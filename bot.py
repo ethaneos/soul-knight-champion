@@ -17,7 +17,7 @@ def get_active_app():
         capture_output=True, text=True
     )
     for line in result.stdout.split("\n"):
-        if "mCurrentFocus" in line or "mFocusedApp" in line:
+        if "mSurface" in line:
             return line
     return ""
 
@@ -56,6 +56,7 @@ was_active = False
 
 while True:
     if is_soul_knight_active():
+        print("on")
         if not was_active:
             print("Soul Knight detected — bot running!")
             was_active = True
@@ -84,4 +85,5 @@ while True:
         if was_active:
             print("Soul Knight not active — bot paused.")
             was_active = False
+        print("not on " + str(time.time()))
         time.sleep(1)  # Check every second when paused
